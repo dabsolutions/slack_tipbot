@@ -56,8 +56,8 @@ class Command
       fallback:"<@#{@user_id}> tipped <@#{target_user}> #{@amount}JBS",
       color: "good",
       fields: [{
-        title: "wooo a #{@amount}JBS tip!",
-        value: "http://explorer.getjumbucks.com/tx/#{tx}",
+        title: "wooo a #{@amount} MAR tip!",
+        value: "http://explorer.marijuanacoin.dabsolutions.co/tx/#{tx}",
         short: false
       }]
     }] 
