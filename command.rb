@@ -29,7 +29,7 @@ class Command
 
   def balance
     balance = client.getbalance(@user_id)
-    @result[:text] = "@#{@user_name}, #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance}#{@coin_config_module::CURRENCY_ICON}"
+    @result[:text] = "@#{@user_name}, #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance} #{@coin_config_module::CURRENCY_ICON}."
     if balance > @coin_config_module::WEALTHY_UPPER_BOUND
       @result[:text] += @coin_config_module::WEALTHY_UPPER_BOUND_POSTTEXT
       @result[:icon_emoji] = @coin_config_module::WEALTHY_UPPER_BOUND_EMOJI
