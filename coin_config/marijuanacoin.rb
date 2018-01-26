@@ -7,7 +7,7 @@ module Marijuanacoin
   WEALTHY_UPPER_BOUND_EMOJI = ':moneybag:'
   BALANCE_REPLY_POSTTEXT = ' '
   DEPOSIT_PRETEXT = 'Make a deposit to'
-  DEPOSIT_POSTTEXT = ', it is your address!'
+  DEPOSIT_POSTTEXT = ', it is your Marijuanacoin address!'
   TIP_ERROR_TEXT = 'Please say tip @username amount'
   TIP_PRETEXT = 'A tip from'
   TIP_POSTTEXT1 = 'http://explorer.marijuanacoin.dabsolutions.co/tx/'
