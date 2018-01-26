@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands)
+  ACTIONS = %w(balance deposit tip withdraw commands help)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -51,12 +51,12 @@ class Command
     set_amount
 
     tx = client.sendfrom @user_id, user_address(target_user), @amount
-    @result[:text] = "#{@coin_config_module::TIP_PRETEXT} <@#{@user_id}> => <@#{target_user}> #{@amount}#{@coin_config_module::CURRENCY_ICON}"
+    @result[:text] = "#{@coin_config_module::TIP_PRETEXT} <@#{@user_id}> -> <@#{target_user}> #{@amount}#{@coin_config_module::CURRENCY_ICON}"
     @result[:attachments] = [{
-      fallback:"<@#{@user_id}> tipped <@#{target_user}> #{@amount}JBS",
+      fallback:"<@#{@user_id}> tipped <@#{target_user}> #{@amount}MAR",
       color: "good",
       fields: [{
-        title: "wooo a #{@amount} MAR tip!",
+        title: "See it on the blockchain!",
         value: "http://explorer.marijuanacoin.dabsolutions.co/tx/#{tx}",
         short: false
       }]
@@ -81,6 +81,10 @@ class Command
   #  @result[:text] = info.to_s
   #  @result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
   # end
+
+  def help
+    @result[:text] = ""
+  end 
 
   private
 
