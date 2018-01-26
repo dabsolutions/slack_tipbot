@@ -1,6 +1,6 @@
 module Marijuanacoin
   PERFORM_ERROR = 'That error doesn\'t exist'
-  BALANCE_REPLY_PRETEXT = 'Your balance is: '
+  BALANCE_REPLY_PRETEXT = 'your balance is: '
   CURRENCY_ICON = ' MAR'
   WEALTHY_UPPER_BOUND = 1000
   WEALTHY_UPPER_BOUND_POSTTEXT = ' '
@@ -11,7 +11,7 @@ module Marijuanacoin
   TIP_ERROR_TEXT = 'Please say tip @username amount'
   TIP_PRETEXT = 'A tip from'
   TIP_POSTTEXT1 = 'Treasure these.'
-  TIP_POSTTEXT2 = ''
+  TIP_POSTTEXT2 = ' '
   WITHDRAW_TEXT = 'A withdraw by'
   WITHDRAW_ICON = ''
   NETWORKINFO_ICON = ':bar_chart:'
