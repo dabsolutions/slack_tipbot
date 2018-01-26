@@ -51,7 +51,7 @@ class Command
     set_amount
 
     tx = client.sendfrom @user_id, user_address(target_user), @amount
-    @result[:text] = "#{@coin_config_module::TIP_PRETEXT} <@#{@user_id}> -> <@#{target_user}> #{@amount}#{@coin_config_module::CURRENCY_ICON}"
+    @result[:text] = "#{@coin_config_module::TIP_PRETEXT} <@#{@user_id}> -> <@#{target_user}> for #{@amount}#{@coin_config_module::CURRENCY_ICON}"
     @result[:attachments] = [{
       fallback:"<@#{@user_id}> tipped <@#{target_user}> #{@amount}MAR",
       color: "good",
