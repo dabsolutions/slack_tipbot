@@ -83,7 +83,7 @@ class Command
   # end
 
   def help
-    @result[:text] = ""
+    @result[:text] = "Type `tipper commands` for a list of commands, or see https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
   end 
 
   private
