@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help)
+  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -83,8 +83,34 @@ class Command
   # end
 
   def help
-    @result[:text] = "Type `tipper commands` for a list of commands, or see https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
-  end 
+    @result[:text] = "Type `dabbot commands` for a list of commands, or see https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
+  end
+  
+  # New Commands
+  # by xrobesx
+  # the bot will be for more than just tipping
+  
+  def forum
+    @result[:text] = "Head over to the DabForum -> https://forum.dabsolutions.co"
+  end
+  
+  def github
+    @result[:text] = "The Dab Solutions github is here -> https://github.com/dabsolutions"
+  end
+  
+  def site
+    @result[:text] = "The Dab Solutions homepage is here -> http://dabsolutions.co"
+  end
+  
+  def invite
+    @result[:text] = "The Dab Solutions slack invite page -> http://slackinvite.dabsolutions.co"
+  end
+  
+  # New Commands
+  # by xrobesx
+  # the bot will be for more than just tipping
+  
+  def 
 
   private
 
