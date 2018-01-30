@@ -8,10 +8,10 @@ Get yourself a server (from whever you desire)
 
 #### Compile your coin
 
-For this example I'm using litecoin but the instructions should be similar for most other coins.
+These instructions should be similar for most other coins.
 
-
-    Add the following to your config file, changing the username and password to something secure. Make sure to take note of the `rpcuser` and * `rpcpassword` because you'll need them in a couple of steps
+Add the following to your config file, changing the username and password to something secure. Make sure to take note of the `rpcuser` and * `rpcpassword` because you'll need them in a couple of steps
+      
       * `daemon=1`
       * `rpcuser=DabSolutions`
       * `rpcpassword=xrobesxandothers`
