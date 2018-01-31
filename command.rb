@@ -192,7 +192,7 @@ class Command
   end
 
   def commands
-    @result[:text] = "#{ACTIONS.join(', ' )}"
+    @result[:text] = "I'm not that smart, I know `balance`, `tip`, `deposit`, 'withdraw`, `site`, `invite`, `forum`, `github`, `help` and `help_<command>`."
   end
 
 end
