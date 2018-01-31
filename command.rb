@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite marinfo)
+  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite marinfo commands)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -110,6 +110,10 @@ class Command
     @result[:text] = "Here you go, invite some friends -> http://slackinvite.dabsolutions.co"
   end
 
+  def connections
+     info = client.getinfo
+     @result[:text] = "MAR has" info.connections "connections with the network."
+  end
   
 
   #help commands
