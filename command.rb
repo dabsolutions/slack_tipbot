@@ -158,7 +158,7 @@ class Command
   # by xrobesx
   # the bot will be for more than just tipping
   
-  def 
+  
 
   private
 
