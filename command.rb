@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite marinfo commands)
+  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite marinfo connections)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -76,11 +76,11 @@ class Command
     @result[:icon_emoji] = @coin_config_module::WITHDRAW_ICON
   end
 
-  # def networkinfo
-  #  info = client.getinfo
-  #  @result[:text] = info.to_s
-  #  @result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
-  # end
+   #def networkinfo
+    #info = client.getinfo
+    #@result[:text] = info.to_s
+    #@result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
+   #end
 
   def help
     @result[:text] = "Type `dabbot commands` for a list of commands. Type `dabbot help_<command>` for more info on each command. See https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
@@ -112,7 +112,7 @@ class Command
 
   def connections
      info = client.getinfo
-     @result[:text] = "MAR has" info.connections "connections with the network."
+     @result[:text] = "I have " + info['connections'].to_s + " connections to the Marijuanacoin network."
   end
   
 
