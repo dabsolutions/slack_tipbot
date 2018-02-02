@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite marinfo connections)
+  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections help_blocks help_connections lets_smoke)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -106,8 +106,9 @@ class Command
     @result[:text] = "Here you go, invite some friends -> http://slackinvite.dabsolutions.co"
   end
   
-  def marinfo
-    @result[:text] = "Here you go, invite some friends -> http://slackinvite.dabsolutions.co"
+  def blocks
+     info = client.getinfo
+     @result[:text] = "I have " + info['blocks'].to_s + " blocks making up the Marijuanacoin blockchain."
   end
 
   def connections
@@ -115,7 +116,15 @@ class Command
      @result[:text] = "I have " + info['connections'].to_s + " connections to the Marijuanacoin network."
   end
   
+  def tipping
+    @result[:text] = "You can send tips with me using the commands `balance`, `deposit`, `tip`, and `withdraw`."
+  end
+  
+  def lets_smoke
+    @result[:text] = "Fuck yea, I'm always down to smoke. Are we #smoking_dabs or #smoking_weed?"
+  end
 
+  
   #help commands
   def help_balance
     @result[:text] = "Typing `dabbot balance` will show you the total number of Marijuanacoins you have in your wallet."
@@ -130,7 +139,7 @@ class Command
   end
   
   def help_withdraw
-    @result[:text] = "Type `dabbot withdraw <address> <amount>` to withdraw coins from this wallet to your own personal wallet. Replace `<address>` with a MAR address like, MSJYoyFmPYhQxXW2kY3A9DpY7AjcoD2RAu. Also replace `<amount>` with the amount you're withdrawing."
+    @result[:text] = "Type `dabbot withdraw address amount` to withdraw coins from this wallet to your own personal wallet. Replace `address` with a MAR address like, MSJYoyFmPYhQxXW2kY3A9DpY7AjcoD2RAu. Also replace `amount` with the amount you're withdrawing."
   end
 
   def help_help
@@ -155,6 +164,14 @@ class Command
   
   def help_github
     @result[:text] = "Type `dabbot github` for the official Dab Solutions Github page."
+  end
+
+  def help_blocks
+    @result[:text] = "Type `dabbot blocks` for the number of blocks on the MAR blockchain."
+  end
+  
+  def help_connections
+    @result[:text] = "Type `dabbot connections` for the number of connects DabBot has to the MAR network."
   end
 
 
@@ -196,7 +213,7 @@ class Command
   end
 
   def commands
-    @result[:text] = "I'm not that smart, I know `balance`, `tip`, `deposit`, `withdraw`, `site`, `invite`, `forum`, `github`, `help` and `help_<command>`."
+    @result[:text] = "I'm not that smart, I know `balance`, `tip`, `deposit`, `withdraw`, `site`, `invite`, `forum`, `github`, `help` and `help_commands`."
   end
 
 end
