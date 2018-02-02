@@ -1,5 +1,5 @@
 module Marijuanacoin
-  PERFORM_ERROR = 'That error doesn\'t exist'
+  PERFORM_ERROR = 'Sorry! I don't know what you're talking about.'
   BALANCE_REPLY_PRETEXT = 'your balance is:'
   CURRENCY_ICON = 'MAR'
   WEALTHY_UPPER_BOUND = 1000
