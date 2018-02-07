@@ -105,13 +105,21 @@ class Command
   end
   
   def network
-    @result[:text] = "I can lookup stats about the #marijuanacoin network Use `connections` and `blocks`."
+    @result[:text] = "I can lookup stats about the Marijuanacoin network Use `connections` and `blocks`."
   end
   
   
   #links commands
   def forum
-    @result[:text] = "Here's the DabForum -> https://forum.dabsolutions.co"
+    @result[:text] = "Come check out our forum."
+    @result[:attachments] = [{
+      color: "good",
+      fields: [{
+        title: "DabForum",
+        value: "https://forum.dabsolutions.co",
+        short: false
+      }]
+    }]
   end
   
   def github
