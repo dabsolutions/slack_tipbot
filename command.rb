@@ -20,7 +20,7 @@ class Command
       self.send("#{@action}".to_sym)
     else
       raise @coin_config_module::PERFORM_ERROR
-      @result[:text] "Type `DabBot help` for more help."
+      @result[:text] = "Type `DabBot help` for more help."
     end
   end
 
