@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite tipping links network help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections supply hashrate stakeweight help_blocks help_connections help_stakeweight help_supply help_hashrate help_tipping help_links help_network lets_smoke study)
+  ACTIONS = %w(balance deposit tip withdraw commands help disclaimer forum github site invite tipping links network help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections supply hashrate stakeweight help_blocks help_connections help_stakeweight help_supply help_hashrate help_tipping help_links help_network lets_smoke study logos)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -90,6 +90,10 @@ class Command
     @result[:text] = "I know commands for Tipping, Links, Network stats, and Help. See them all with `DabBot tipping` and `DabBot links`. `DabBot network` and `DabBot help`"
   end
   
+  def disclaimer
+    @result[:text] = "I, DabBot, as well as Dab Solutions, are not responsible for your Marijuanacoins. Do not use me as your personal MAR wallet. Just keep tipping amounts of MAR in this wallet and the majority of your coins safely in your own control."
+  end
+  
   # New Commands
   # by xrobesx
   # the bot will be for more than just tipping
@@ -110,6 +114,18 @@ class Command
   
   
   #links commands
+  def site
+    @result[:text] = "Here you go, this is our website."
+    @result[:attachments] = [{
+      color: "good",
+      fields: [{
+        title: "Dab Solutions",
+        value: "http://dabsolutions.co",
+        short: false
+      }]
+    }]
+  end
+  
   def forum
     @result[:text] = "Anyone is welcome to signup and use the forum."
     @result[:attachments] = [{
@@ -129,18 +145,6 @@ class Command
       fields: [{
         title: "GitHub - Dab Solutions",
         value: "https://github.com/dabsolutions",
-        short: false
-      }]
-    }]
-  end
-  
-  def site
-    @result[:text] = "Here you go, this is our website."
-    @result[:attachments] = [{
-      color: "good",
-      fields: [{
-        title: "Dab Solutions",
-        value: "http://dabsolutions.co",
         short: false
       }]
     }]
@@ -193,6 +197,18 @@ class Command
   
   def study
     @result[:text] = "I can't learn on my own, someone needs to teach me: https://github.com/dabsolutions/slack_tipbot"
+  end
+  
+  def logos
+    @result[:text] = "Official Dab Solutions logos, as well as official logos for our projects can be found here!"
+    @result[:attachments] = [{
+      color: "good",
+      fields: [{
+        title: "Official Dab Solutions Logos",
+        value: "https://github.com/dabsolutions/official-logos",
+        short: false
+      }]
+    }]
   end
 
 
