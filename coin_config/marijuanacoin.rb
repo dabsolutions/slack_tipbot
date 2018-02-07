@@ -13,7 +13,7 @@ module Marijuanacoin
   TIP_POSTTEXT1 = 'http://explorer.marijuanacoin.dabsolutions.co/tx/'
   TIP_POSTTEXT2 = '|Block Explorer'
   WITHDRAW_TEXT = 'A withdraw by'
-  WITHDRAW_ICON = ':desktop_computer:'
+  WITHDRAW_ICON = ':money_with_wings:'
   NETWORKINFO_ICON = ':blazeit:'
   TOO_POOR_TEXT = 'Not enough coins. Sorry.'
   NO_PURPOSE_LOWER_BOUND_TEXT = 'Too small. Withdraws above 0.0001 only.'

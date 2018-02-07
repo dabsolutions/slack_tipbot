@@ -31,6 +31,7 @@ class Command
   def balance
     balance = client.getbalance(@user_id)
     @result[:text] = "@#{@user_name}, #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance} #{@coin_config_module::CURRENCY_ICON}."
+    @result[:icon_emoji] = @coin_config_module::WITHDRAW_ICON
     if balance > @coin_config_module::WEALTHY_UPPER_BOUND
       @result[:text] += @coin_config_module::WEALTHY_UPPER_BOUND_POSTTEXT
       @result[:icon_emoji] = @coin_config_module::WEALTHY_UPPER_BOUND_EMOJI
@@ -42,6 +43,7 @@ class Command
 
   def deposit
     @result[:text] = "#{@coin_config_module::DEPOSIT_PRETEXT} #{user_address(@user_id)} #{@coin_config_module::DEPOSIT_POSTTEXT}"
+    @result[:icon_emoji] = @coin_config_module::WITHDRAW_ICON  
   end
 
   def tip
@@ -53,6 +55,7 @@ class Command
 
     tx = client.sendfrom @user_id, user_address(target_user), @amount
     @result[:text] = "#{@coin_config_module::TIP_PRETEXT} <@#{@user_id}> --> <@#{target_user}> for #{@amount} #{@coin_config_module::CURRENCY_ICON}"
+    @result[:icon_emoji] = @coin_config_module::WITHDRAW_ICON
     @result[:attachments] = [{
       fallback:"<@#{@user_id}> tipped <@#{target_user}> #{@amount}MAR",
       color: "good",
