@@ -1,5 +1,5 @@
 module Marijuanacoin
-  PERFORM_ERROR = 'Sorry! I don't know what you're talking about.'
+  PERFORM_ERROR = 'Sorry! I do not know what you are talking about.'
   BALANCE_REPLY_PRETEXT = 'your balance is:'
   CURRENCY_ICON = 'MAR'
   WEALTHY_UPPER_BOUND = 1000
@@ -8,7 +8,7 @@ module Marijuanacoin
   BALANCE_REPLY_POSTTEXT = ' '
   DEPOSIT_PRETEXT = 'Make a deposit to'
   DEPOSIT_POSTTEXT = ', it is your Marijuanacoin address!'
-  TIP_ERROR_TEXT = 'Please say `tipper tip @username amount`'
+  TIP_ERROR_TEXT = 'Please say `DabBot tip @username amount` or `DabBot help` for more info.'
   TIP_PRETEXT = 'A tip from'
   TIP_POSTTEXT1 = 'http://explorer.marijuanacoin.dabsolutions.co/tx/'
   TIP_POSTTEXT2 = '|Block Explorer'

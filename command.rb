@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections help_blocks help_connections lets_smoke)
+  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite tipping links help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections help_blocks help_connections help_tipping help_links lets_smoke)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -20,7 +20,7 @@ class Command
       self.send("#{@action}".to_sym)
     else
       raise @coin_config_module::PERFORM_ERROR
-      @result[:text] "Type `dabbot help` for more help."
+      @result[:text] "Type `DabBot help` for more help."
     end
   end
 
@@ -63,10 +63,9 @@ class Command
       }]
     }] 
     
-    @result[:text] += " (<#{@coin_config_module::TIP_POSTTEXT1}#{tx}#{@coin_config_module::TIP_POSTTEXT2}>)"
   end
 
-  alias :":dogecoin:" :tip
+  alias :":marijuanacoin:" :tip
 
   def withdraw
     address = @params.shift
@@ -84,7 +83,11 @@ class Command
    #end
 
   def help
-    @result[:text] = "Type `dabbot commands` for a list of commands. Type `dabbot help_<command>` for more info on each command. See https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
+    @result[:text] = "Type `DabBot commands` for a list of commands. Typing `DabBot help_<command>` will give you more info on each command. See https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
+  end
+  
+  def commands
+    @result[:text] = "I know commands for Links and Tipping. See them all with `DabBot tipping` and `DabBot links`."
   end
   
   # New Commands
@@ -117,10 +120,18 @@ class Command
      @result[:text] = "I have " + info['connections'].to_s + " connections to the Marijuanacoin network."
   end
   
+  
+  #command categories
   def tipping
-    @result[:text] = "You can send tips with me using the commands `balance`, `deposit`, `tip`, and `withdraw`."
+    @result[:text] = "You can use me to send tips by using the commands `balance`, `deposit`, `tip`, and `withdraw`."
   end
   
+  def links
+    @result[:text] = "Use me to access Dab Solutions links with the commands `site`, `forum`, `invite`, and `github`."
+  end
+  
+  
+  #random commands
   def lets_smoke
     @result[:text] = "Fuck yea, I'm always down to smoke. Are we #smoking_dabs or #smoking_weed?"
   end
@@ -128,19 +139,19 @@ class Command
   
   #help commands
   def help_balance
-    @result[:text] = "Typing `dabbot balance` will show you the total number of Marijuanacoins you have in your wallet."
+    @result[:text] = "Typing `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
   end
   
   def help_tip
-    @result[:text] = "Type `dabbot tip <@user> <amount>` to send someone coins. Replace `<@user>` with a name like @iguanafan and replace `<amount>` with a number like 5."
+    @result[:text] = "Type `DabBot tip <@user> <amount>` to send someone coins. Replace `<@user>` with a name like @iguanafan and replace `<amount>` with a number like 5."
   end
 
   def help_deposit
-    @result[:text] = "Typing `dabbot deposit` will show you your Marijuanacoin wallet address. You can send MAR to this address to use with me :)"
+    @result[:text] = "Typing `DabBot deposit` will show you your Marijuanacoin wallet address. You can send MAR to this address to use with me :)"
   end
   
   def help_withdraw
-    @result[:text] = "Type `dabbot withdraw address amount` to withdraw coins from this wallet to your own personal wallet. Replace `address` with a MAR address like, MSJYoyFmPYhQxXW2kY3A9DpY7AjcoD2RAu. Also replace `amount` with the amount you're withdrawing."
+    @result[:text] = "Type `DabBot withdraw address amount` to withdraw coins from this wallet to your own personal wallet. Replace `address` with a MAR address like, MSJYoyFmPYhQxXW2kY3A9DpY7AjcoD2RAu. Also replace `amount` with the amount you're withdrawing."
   end
 
   def help_help
@@ -148,34 +159,42 @@ class Command
   end
   
   def help_commands
-    @result[:text] = "Typing 'dabbot commands` shows you all the commands I understand."
+    @result[:text] = "Typing 'DabBot commands` shows you all the commands I understand."
   end
 
   def help_site
-    @result[:text] = "Type `dabbot site` for the official Dab Solutions site."
+    @result[:text] = "Type `DabBot site` for the official Dab Solutions site."
   end
   
   def help_invite
-    @result[:text] = "Type `dabbot invite` for the official Dab Solutions slack invite page."
+    @result[:text] = "Type `DabBot invite` for the official Dab Solutions slack invite page."
   end
 
   def help_forum
-    @result[:text] = "Type `dabbot forum` for the official Dab Solutions Forum link."
+    @result[:text] = "Type `DabBot forum` for the official Dab Solutions Forum link."
   end
   
   def help_github
-    @result[:text] = "Type `dabbot github` for the official Dab Solutions Github page."
+    @result[:text] = "Type `DabBot github` for the official Dab Solutions Github page."
   end
 
   def help_blocks
-    @result[:text] = "Type `dabbot blocks` for the number of blocks on the MAR blockchain."
+    @result[:text] = "Type `DabBot blocks` for the number of blocks on the MAR blockchain."
   end
   
   def help_connections
-    @result[:text] = "Type `dabbot connections` for the number of connects DabBot has to the MAR network."
+    @result[:text] = "Type `DabBot connections` for the number of connects DabBot has to the MAR network."
   end
 
+  def help_tipping
+    @result[:text] = "Type `DabBot tipping` to see all of the Tipping commands I know."
+  end
+  
+  def help_links
+    @result[:text] = "Type `DabBot links` to see all of the Links commands I know."
+  end
 
+  
   # New Commands
   # by xrobesx
   # the bot will be for more than just tipping
@@ -213,8 +232,5 @@ class Command
     end
   end
 
-  def commands
-    @result[:text] = "I'm not that smart, I know `balance`, `tip`, `deposit`, `withdraw`, `site`, `invite`, `forum`, `github`, `help` and `help_commands`."
-  end
 
 end
