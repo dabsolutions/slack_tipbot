@@ -168,31 +168,31 @@ class Command
   def blocks
      info = client.getinfo
      @result[:text] = "I have " + info['blocks'].to_s + " blocks making up the Marijuanacoin blockchain."
-     @result[:icon_emoji] = @coin_config_module::WITHDRAW_ICON
+     @result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
   end
 
   def connections
      info = client.getinfo
      @result[:text] = "I have " + info['connections'].to_s + " connections to the Marijuanacoin network."
-     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
+     @result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
   end
   
   def stakeweight
      info = client.getmininginfo
      @result[:text] = "The Marijuanacoin network has a network Stake Weight of " + info['netstakeweight'].to_s + "."
-     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
+     @result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
   end
   
   def supply
      info = client.getinfo
      @result[:text] = "There are " + info['moneysupply'].to_s + " marijuanacoins in existence. However a large amount were burned."
-     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
+     @result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
   end
   
   def hashrate
      info = client.getmininginfo
      @result[:text] = "There is " + info['netmhashps'].to_s + " mHash/sec mining on the Marijuanacoin network."
-     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
+     @result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
   end
   
   
