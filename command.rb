@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite tipping links help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections help_blocks help_connections help_tipping help_links lets_smoke)
+  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite tipping links network help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections help_blocks help_connections help_tipping help_links help_network lets_smoke)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -83,17 +83,33 @@ class Command
    #end
 
   def help
-    @result[:text] = "Type `DabBot commands` for a list of commands. Typing `DabBot help_<command>` will give you more info on each command. See https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
+    @result[:text] = "Type `DabBot commands` to learn about all of my commands. Typing `DabBot help_<command>` will give you more info on each command. See https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
   end
   
   def commands
-    @result[:text] = "I know commands for Links and Tipping. See them all with `DabBot tipping` and `DabBot links`."
+    @result[:text] = "I know commands for Tipping, Links, Network stats, and Help. See them all with `DabBot tipping` and `DabBot links`. `DabBot network` and `DabBot help`"
   end
   
   # New Commands
   # by xrobesx
   # the bot will be for more than just tipping
   
+  
+  #command categories
+  def tipping
+    @result[:text] = "You can use me to send tips by using the commands `balance`, `deposit`, `tip`, and `withdraw`."
+  end
+  
+  def links
+    @result[:text] = "Use me to access Dab Solutions links with the commands `site`, `forum`, `invite`, and `github`."
+  end
+  
+  def network
+    @result[:text] = "I can lookup stats about the #marijuanacoin network Use `connections` and `blocks`."
+  end
+  
+  
+  #links commands
   def forum
     @result[:text] = "Here's the DabForum -> https://forum.dabsolutions.co"
   end
@@ -110,6 +126,8 @@ class Command
     @result[:text] = "Here you go, invite some friends -> http://slackinvite.dabsolutions.co"
   end
   
+  
+  #network commands 
   def blocks
      info = client.getinfo
      @result[:text] = "I have " + info['blocks'].to_s + " blocks making up the Marijuanacoin blockchain."
@@ -120,15 +138,6 @@ class Command
      @result[:text] = "I have " + info['connections'].to_s + " connections to the Marijuanacoin network."
   end
   
-  
-  #command categories
-  def tipping
-    @result[:text] = "You can use me to send tips by using the commands `balance`, `deposit`, `tip`, and `withdraw`."
-  end
-  
-  def links
-    @result[:text] = "Use me to access Dab Solutions links with the commands `site`, `forum`, `invite`, and `github`."
-  end
   
   
   #random commands
@@ -194,6 +203,9 @@ class Command
     @result[:text] = "Type `DabBot links` to see all of the Links commands I know."
   end
 
+  def help_network
+    @result[:text] = "Type `DabBot network` to see all of the Network commands I know."
+  end
   
   # New Commands
   # by xrobesx
