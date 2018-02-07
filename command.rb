@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite tipping links network help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections help_blocks help_connections help_tipping help_links help_network lets_smoke)
+  ACTIONS = %w(balance deposit tip withdraw commands help forum github site invite tipping links network help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections supply hashrate stakeweight help_blocks help_connections help_stakeweight help_supply help_hashrate help_tipping help_links help_network lets_smoke)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -111,7 +111,7 @@ class Command
   
   #links commands
   def forum
-    @result[:text] = "Come check out our forum."
+    @result[:text] = "Anyone is welcome to signup and use the forum."
     @result[:attachments] = [{
       color: "good",
       fields: [{
@@ -123,15 +123,39 @@ class Command
   end
   
   def github
-    @result[:text] = "Dab Solutions Github -> https://github.com/dabsolutions"
+    @result[:text] = "You'll find me on there, as well as other Dab Solutions projects."
+    @result[:attachments] = [{
+      color: "good",
+      fields: [{
+        title: "GitHub - Dab Solutions",
+        value: "https://github.com/dabsolutions",
+        short: false
+      }]
+    }]
   end
   
   def site
-    @result[:text] = "Check out our homepage -> http://dabsolutions.co"
+    @result[:text] = "Here you go, this is our website."
+    @result[:attachments] = [{
+      color: "good",
+      fields: [{
+        title: "Dab Solutions",
+        value: "http://dabsolutions.co",
+        short: false
+      }]
+    }]
   end
   
   def invite
-    @result[:text] = "Here you go, invite some friends -> http://slackinvite.dabsolutions.co"
+    @result[:text] = "Feel free to invite your friends here."
+    @result[:attachments] = [{
+      color: "good",
+      fields: [{
+        title: "Slack Invite",
+        value: "http://slackinvite.dabsolutions.co",
+        short: false
+      }]
+    }]
   end
   
   
@@ -146,15 +170,32 @@ class Command
      @result[:text] = "I have " + info['connections'].to_s + " connections to the Marijuanacoin network."
   end
   
+  def stakeweight
+     info = client.getstakinginfo
+     @result[:text] = "The Marijuanacoin network has a Net Stake Weight of " + info['netstakeweight'].to_s + " ."
+  end
+  
+  def supply
+     info = client.getinfo
+     @result[:text] = "There are " + info['moneysupply'].to_s + " marijuanacoins in existence. However a large amount were burned."
+  end
+  
+  def hashrate
+     info = client.getmininginfo
+     @result[:text] = "There is " + info['netmhashps'].to_s + " mHash/sec mining on the Marijuanacoin network."
+  end
   
   
   #random commands
   def lets_smoke
-    @result[:text] = "Fuck yea, I'm always down to smoke. Are we #smoking_dabs or #smoking_weed?"
+    @result[:text] = "Fuck yea, I'm always down to smoke. Are we smoking dabs or weed?"
   end
 
-  
+
+
   #help commands
+  
+  #help tipping commands
   def help_balance
     @result[:text] = "Typing `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
   end
@@ -171,6 +212,7 @@ class Command
     @result[:text] = "Type `DabBot withdraw address amount` to withdraw coins from this wallet to your own personal wallet. Replace `address` with a MAR address like, MSJYoyFmPYhQxXW2kY3A9DpY7AjcoD2RAu. Also replace `amount` with the amount you're withdrawing."
   end
 
+  #help help/commands
   def help_help
     @result[:text] = "Wow, you really need help..."
   end
@@ -179,6 +221,7 @@ class Command
     @result[:text] = "Typing 'DabBot commands` shows you all the commands I understand."
   end
 
+  #help links
   def help_site
     @result[:text] = "Type `DabBot site` for the official Dab Solutions site."
   end
@@ -195,6 +238,7 @@ class Command
     @result[:text] = "Type `DabBot github` for the official Dab Solutions Github page."
   end
 
+  #help network 
   def help_blocks
     @result[:text] = "Type `DabBot blocks` for the number of blocks on the MAR blockchain."
   end
@@ -202,7 +246,21 @@ class Command
   def help_connections
     @result[:text] = "Type `DabBot connections` for the number of connects DabBot has to the MAR network."
   end
+  
+  def help_stakeweight
+    @result[:text] = "Type `DabBot stakeweight` for the total weight of coins staking on the MAR network."
+  end
+  
+  def help_supply
+    @result[:text] = "Type `DabBot supply` for the total number of Marijuanacoins in existence."
+  end 
+  
+  def help_hashrate
+    @result[:text] = "Type `DabBot hashrate` for the total amount of mining power currently on the MAR network."
+  end
 
+  #help categories 
+  
   def help_tipping
     @result[:text] = "Type `DabBot tipping` to see all of the Tipping commands I know."
   end
@@ -214,6 +272,7 @@ class Command
   def help_network
     @result[:text] = "Type `DabBot network` to see all of the Network commands I know."
   end
+  
   
   # New Commands
   # by xrobesx
