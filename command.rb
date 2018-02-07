@@ -105,7 +105,7 @@ class Command
   end
   
   def network
-    @result[:text] = "I can lookup stats about the Marijuanacoin network Use `connections` and `blocks`."
+    @result[:text] = "I can lookup stats about the Marijuanacoin network Use `connections`, `blocks`, `supply`, `hashrate`, and `stakeweight`."
   end
   
   
@@ -172,7 +172,7 @@ class Command
   
   def stakeweight
      info = client.getmininginfo
-     @result[:text] = "The Marijuanacoin network has a Net Stake Weight of " + info['netstakeweight'].to_s + " ."
+     @result[:text] = "The Marijuanacoin network has a network Stake Weight of " + info['netstakeweight'].to_s + "."
   end
   
   def supply
@@ -189,6 +189,10 @@ class Command
   #random commands
   def lets_smoke
     @result[:text] = "Fuck yea, I'm always down to smoke. Are we smoking dabs or weed?"
+  end
+  
+  def study
+    @result[:text] = "I can't learn on my own, someone needs to teach me: https://github.com/dabsolutions/slack_tipbot"
   end
 
 
