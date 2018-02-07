@@ -19,5 +19,9 @@ module Marijuanacoin
   NO_PURPOSE_LOWER_BOUND_TEXT = 'Too small. Withdraws above 0.0001 only.'
   NO_PURPOSE_LOWER_BOUND = 0.0001
   RANDOMIZED_EMOJI = ' '
+  TIPPING_EMOJI = ' '
+  GITHUB_EMOJI = ':github:'
+  MARIJUANA_EMOJI = ':blazeit:'
   NETWORK = 'marijuanacoin'
+  TADA_EMOJI = ':tada:'
 end
