@@ -171,7 +171,7 @@ class Command
   end
   
   def stakeweight
-     info = client.getstakinginfo
+     info = client.getmininginfo
      @result[:text] = "The Marijuanacoin network has a Net Stake Weight of " + info['netstakeweight'].to_s + " ."
   end
   
