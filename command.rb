@@ -168,7 +168,7 @@ class Command
   def blocks
      info = client.getinfo
      @result[:text] = "I have " + info['blocks'].to_s + " blocks making up the Marijuanacoin blockchain."
-     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
+     @result[:icon_emoji] = @coin_config_module::WITHDRAW_ICON
   end
 
   def connections
