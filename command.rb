@@ -87,7 +87,7 @@ class Command
   end
   
   def commands
-    @result[:text] = "I know commands for Tipping, Links, Network stats, and Help. See them all with `DabBot tipping` and `DabBot links`. `DabBot network` and `DabBot help`"
+    @result[:text] = "I know commands for Tipping, Dab Solutions Links, MAR Network stats, and Help. See them all with `DabBot tipping`, `DabBot links`, `DabBot network`, and `DabBot help`."
   end
   
   def disclaimer
@@ -140,6 +140,7 @@ class Command
   
   def github
     @result[:text] = "You'll find me on there, as well as other Dab Solutions projects."
+    @result[:icon_emoji] = @coin_config_module::GITHUB_ICON
     @result[:attachments] = [{
       color: "good",
       fields: [{
@@ -167,26 +168,31 @@ class Command
   def blocks
      info = client.getinfo
      @result[:text] = "I have " + info['blocks'].to_s + " blocks making up the Marijuanacoin blockchain."
+     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
   end
 
   def connections
      info = client.getinfo
      @result[:text] = "I have " + info['connections'].to_s + " connections to the Marijuanacoin network."
+     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
   end
   
   def stakeweight
      info = client.getmininginfo
      @result[:text] = "The Marijuanacoin network has a network Stake Weight of " + info['netstakeweight'].to_s + "."
+     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
   end
   
   def supply
      info = client.getinfo
      @result[:text] = "There are " + info['moneysupply'].to_s + " marijuanacoins in existence. However a large amount were burned."
+     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
   end
   
   def hashrate
      info = client.getmininginfo
      @result[:text] = "There is " + info['netmhashps'].to_s + " mHash/sec mining on the Marijuanacoin network."
+     @result[:icon_emoji] = @coin_config_module::MARIJUANA_ICON
   end
   
   
