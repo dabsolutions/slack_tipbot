@@ -143,7 +143,7 @@ class Command
   
   def github
     @result[:text] = "You'll find me on there, as well as other Dab Solutions projects."
-    @result[:icon_emoji] = @coin_config_module::GITHUB_ICON
+    @result[:icon_emoji] = @coin_config_module::GITHUB_EMOJI
     @result[:attachments] = [{
       color: "good",
       fields: [{
