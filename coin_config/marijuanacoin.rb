@@ -5,7 +5,7 @@ module Marijuanacoin
   WEALTHY_UPPER_BOUND = 1000
   WEALTHY_UPPER_BOUND_POSTTEXT = ' '
   WEALTHY_UPPER_BOUND_EMOJI = ':moneybag:'
-  BALANCE_REPLY_POSTTEXT = 'Use it wisely. '
+  BALANCE_REPLY_POSTTEXT = ' Use it wisely.'
   DEPOSIT_PRETEXT = 'Send your coins to'
   DEPOSIT_POSTTEXT = ', this is your personal Marijuanacoin address!'
   TIP_ERROR_TEXT = 'Please say `DabBot tip @username amount` or `DabBot help` for more info.'
