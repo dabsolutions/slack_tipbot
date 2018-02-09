@@ -24,4 +24,5 @@ module Marijuanacoin
   MARIJUANA_EMOJI = ':desktop_computer:'
   NETWORK = 'marijuanacoin'
   TADA_EMOJI = ':tada:'
+  LOVE_EMOJI = ':heart_eyes:'
 end
