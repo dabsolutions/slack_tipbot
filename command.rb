@@ -234,7 +234,7 @@ class Command
     @result[:attachments] = [{
       color: "good",
       fields: [{
-        title: "Marijuanacoin BTCtalk."
+        title: "Marijuanacoin BTCtalk.",
         value: "http://marijuanacoin.dabsolutions.co",
         short: false
       }]
