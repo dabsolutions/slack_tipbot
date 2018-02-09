@@ -220,7 +220,7 @@ class Command
     }]
   end
   
-  def study
+  def love_you
     @result[:text] = "I love you too! I love you all."
     @result[:icon_emoji] = @coin_config_module::LOVE_EMOJI
   end
