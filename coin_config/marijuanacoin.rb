@@ -1,5 +1,5 @@
 module Marijuanacoin
-  PERFORM_ERROR = 'Sorry, I do not know that command. Type `DabBot commands` to learn more about me.'
+  PERFORM_ERROR = 'Sorry, I do not know that command. Say `DabBot commands` to learn how to control me.'
   BALANCE_REPLY_PRETEXT = 'your balance is:'
   CURRENCY_ICON = 'MAR'
   WEALTHY_UPPER_BOUND = 1000
