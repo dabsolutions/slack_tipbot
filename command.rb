@@ -115,6 +115,10 @@ class Command
     @result[:text] = "I can lookup stats on the Marijuanacoin network. Use `connections`, `blocks`, `supply`, `hashrate`, and `stakeweight`."
   end
   
+  def marijuanacoin
+    @result[:text] = "I have important links and information for Marijuanacoin. Use `mar_site`, `mar_btctalk`, `mar_cmc`, ``, and ``."
+  end
+  
   
   #links commands
   def site
@@ -197,6 +201,50 @@ class Command
      @result[:text] = "There is " + info['netmhashps'].to_s + " mHash/sec mining on the Marijuanacoin network."
      @result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
   end
+  
+  
+  #marijuanacoin commands
+  def mar
+    word = gets
+    
+    if word = site
+    @result[:text] = "Here you go, this is the MAR website."
+    @result[:attachments] = [{
+      color: "good",
+      fields: [{
+        title: "Marijuanacoin Site",
+        value: "http://marijuanacoin.dabsolutions.co",
+        short: false
+      }]
+    }]
+    
+    if word = explorer
+    @result[:text] = "Here you go, this is the MAR explorer."
+    @result[:attachments] = [{
+      color: "good",
+      fields: [{
+        title: "Marijuanacoin Explorer",
+        value: "http://explorer.marijuanacoin.dabsolutions.co",
+        short: false
+      }]
+    }]
+    
+    if word = btctalk
+    @result[:text] = "Here you go, this is the MAR BitcoinTalk thread."
+    @result[:attachments] = [{
+      color: "good",
+      fields: [{
+        title: "Marijuanacoin BTCtalk."
+        value: "http://marijuanacoin.dabsolutions.co",
+        short: false
+      }]
+    }]
+    
+    else
+    @result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` for now."
+  end
+  
+  
   
   
   #random commands
