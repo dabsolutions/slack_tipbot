@@ -217,8 +217,6 @@ class Command
        	     short: false
       	   }]
     	 }]
-    
-    
     #if word = `explorer`
     #@result[:text] = "Here you go, this is the MAR explorer."
     #@result[:attachments] = [{
@@ -230,8 +228,6 @@ class Command
     #  }]
     #}]
     #end
-    
-    
     #if word = `btctalk`
     #@result[:text] = "Here you go, this is the MAR BitcoinTalk thread."
     #@result[:attachments] = [{
@@ -243,8 +239,6 @@ class Command
     #  }]
     #}]
     #end
-    
-    
     else
     	@result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` for now."
     end
