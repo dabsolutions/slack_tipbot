@@ -217,28 +217,6 @@ class Command
        	     short: false
       	   }]
     	 }]
-    #if word = `explorer`
-    #@result[:text] = "Here you go, this is the MAR explorer."
-    #@result[:attachments] = [{
-    #  color: "good",
-    #  fields: [{
-    #    title: "Marijuanacoin Explorer",
-    #    value: "http://explorer.marijuanacoin.dabsolutions.co",
-    #    short: false
-    #  }]
-    #}]
-    #end
-    #if word = `btctalk`
-    #@result[:text] = "Here you go, this is the MAR BitcoinTalk thread."
-    #@result[:attachments] = [{
-    #  color: "good",
-    #  fields: [{
-    #    title: "Marijuanacoin BTCtalk.",
-    #    value: "http://marijuanacoin.dabsolutions.co",
-    #    short: false
-    #  }]
-    #}]
-    #end
     else
     	@result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` for now."
     end
