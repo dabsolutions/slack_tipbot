@@ -205,7 +205,7 @@ class Command
   
   #marijuanacoin commands
   def mar
-    word = 'site'
+    word = $site
     
     if word = `site`
     @result[:text] = "Here you go, this is the MAR website."
@@ -217,7 +217,7 @@ class Command
         short: false
       }]
     }]
-    end
+    
     
     if word = `explorer`
     @result[:text] = "Here you go, this is the MAR explorer."
@@ -229,7 +229,7 @@ class Command
         short: false
       }]
     }]
-    end
+    
     
     
     if word = `btctalk`
@@ -242,12 +242,12 @@ class Command
         short: false
       }]
     }]
-    end
+    
     
     
     else
     @result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` for now."
-    
+    end
     
   end
   
