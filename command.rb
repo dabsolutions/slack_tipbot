@@ -206,7 +206,7 @@ class Command
   #marijuanacoin commands
   def mar
     word = $1
-    if word = "site"
+    if word = 'site'
     	@result[:text] = "Here you go, this is the MAR website."
     	@result[:attachments] = [{
       		color: "good",
