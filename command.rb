@@ -116,7 +116,7 @@ class Command
   end
   
   def marijuanacoin
-    @result[:text] = "I have important links and information for Marijuanacoin. Use `mar site`, `mar btctalk`, `mar cmc`, `mar explorer`, and ``."
+    @result[:text] = "I have important links and information for Marijuanacoin. Use `mar site`, `mar btctalk`, `mar cmc`, and `mar explorer`."
   end
   
   
@@ -226,8 +226,28 @@ class Command
        	     short: false
       	   }]
     	 }]
+    elsif word == "btctalk"
+    	@result[:text] = "Here you go, this is the MAR BitcoinTalk Thread." 
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "Marijuanacoin BitcoinTalk",
+        	  value: "https://",
+       	     short: false
+      	   }]
+    	 }]
+    elsif word == "cmc"
+    	@result[:text] = "Here you go, this is the MAR CoinMarketCap page." 
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "Marijuanacoin CoinMarketCap",
+        	  value: "https://",
+       	     short: false
+      	   }]
+    	 }]
     else
-    	@result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` for now."
+    	@result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` `mar cmc` for now."
     end
     
   end
