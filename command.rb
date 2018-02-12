@@ -207,7 +207,7 @@ class Command
   def mar
     word = $1
     if word = 'site'
-    	@result[:text] = "Here you go, this is the MAR website."
+    	@result[:text] = "Here you go, this is the MAR website." + $1
     	@result[:attachments] = [{
       		color: "good",
      		fields: [{
