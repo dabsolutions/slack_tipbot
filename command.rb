@@ -122,15 +122,49 @@ class Command
   
   #links commands
   def site
-    @result[:text] = "Here you go, this is our website."
-    @result[:attachments] = [{
-      color: "good",
-      fields: [{
-        title: "Dab Solutions",
-        value: "http://dabsolutions.co",
-        short: false
-      }]
-    }]
+    word = @params.shift
+    if word == "dabmining"
+    	@result[:text] = "Here you go, this is the DabMining.co pool." 
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "DabMining.co",
+        	  value: "http://dabmining.co",
+       	     short: false
+      	   }]
+    	 }]
+    elsif word == "dabcity"
+    	@result[:text] = "Here you go, this is the DabCity site." 
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "DabCity",
+        	  value: "https://dabcity.co",
+       	     short: false
+      	   }]
+    	 }]
+    elsif word == "komodo"
+    	@result[:text] = "Here you go, this is the Komodo Services site." 
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "Komodo Services",
+        	  value: "https://",
+       	     short: false
+      	   }]
+    	 }]
+    else
+    	@result[:text] = "Here you go, this is our website."
+    	@result[:attachments] = [{
+      	color: "good",
+      	fields: [{
+       	 title: "Dab Solutions",
+        	value: "http://dabsolutions.co",
+        	short: false
+      	}]
+   	 }]
+    end
+    
   end
   
   def forum
