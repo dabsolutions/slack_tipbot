@@ -205,8 +205,7 @@ class Command
   
   #marijuanacoin commands
   def mar
-    word = $1
-    
+    word = explorer
     if word = site
     	@result[:text] = "Here you go, this is the MAR website."
     	@result[:attachments] = [{
