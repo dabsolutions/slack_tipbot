@@ -217,9 +217,9 @@ class Command
         short: false
       }]
     }]
-    end
     
-    if word = `explorer`
+    
+    elsif word = `explorer`
     @result[:text] = "Here you go, this is the MAR explorer."
     @result[:attachments] = [{
       color: "good",
@@ -229,10 +229,10 @@ class Command
         short: false
       }]
     }]
-    end
     
     
-    if word = `btctalk`
+    
+    elsif word = `btctalk`
     @result[:text] = "Here you go, this is the MAR BitcoinTalk thread."
     @result[:attachments] = [{
       color: "good",
