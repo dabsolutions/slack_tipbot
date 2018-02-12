@@ -208,15 +208,15 @@ class Command
     word = gets
     
     if word = site
-    @result[:text] = "Here you go, this is the MAR website."
-    @result[:attachments] = [{
-      color: "good",
-      fields: [{
-        title: "Marijuanacoin Site",
-        value: "http://marijuanacoin.dabsolutions.co",
-        short: false
-      }]
-    }]
+    	@result[:text] = "Here you go, this is the MAR website."
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "Marijuanacoin Site",
+        	  value: "http://marijuanacoin.dabsolutions.co",
+       	     short: false
+      	   }]
+    	 }]
     
     
     #if word = `explorer`
