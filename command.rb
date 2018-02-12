@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help disclaimer forum github site invite tipping links network help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections supply hashrate stakeweight help_blocks help_connections help_stakeweight help_supply help_hashrate help_tipping help_links help_network lets_smoke study logos love_you)
+  ACTIONS = %w(balance deposit tip withdraw commands help disclaimer forum github site invite tipping links network marijuanacoin mar help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections supply hashrate stakeweight help_blocks help_connections help_stakeweight help_supply help_hashrate help_tipping help_links help_network lets_smoke study logos love_you)
     def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -54,7 +54,7 @@ class Command
     set_amount
 
     tx = client.sendfrom @user_id, user_address(target_user), @amount
-    @result[:text] = "#{@coin_config_module::TIP_PRETEXT} <@#{@user_id}> --> <@#{target_user}> for #{@amount} #{@coin_config_module::CURRENCY_ICON}"
+    @result[:text] = "#{@coin_config_module::TIP_PRETEXT} <@#{@user_id}> --> <@#{target_user}> for #{@amount} #{@coin_config_module::CURRENCY_ICON}."
     @result[:icon_emoji] = @coin_config_module::WITHDRAW_ICON
     @result[:attachments] = [{
       fallback:"<@#{@user_id}> tipped <@#{target_user}> #{@amount}MAR",
@@ -90,7 +90,7 @@ class Command
   end
   
   def commands
-    @result[:text] = "I know commands for Tipping, Dab Solutions Links, MAR Network stats, and Help. See them all with `DabBot tipping`, `DabBot links`, `DabBot network`, and `DabBot help`."
+    @result[:text] = "I know commands for Tipping, Dab Solutions Links, Marijuanacoin Info and Network stats, and Help. See them all with `DabBot tipping`, `DabBot links`, `DabBot marijuanacoin`, `DabBot network`, and `DabBot help`."
   end
   
   def disclaimer
@@ -113,6 +113,10 @@ class Command
   
   def network
     @result[:text] = "I can lookup stats on the Marijuanacoin network. Use `connections`, `blocks`, `supply`, `hashrate`, and `stakeweight`."
+  end
+  
+  def marijuanacoin
+    @result[:text] = "I have important links and information for Marijuanacoin. Use `mar site`, `mar btctalk`, `mar cmc`, and `mar explorer`."
   end
   
   
@@ -197,6 +201,58 @@ class Command
      @result[:text] = "There is " + info['netmhashps'].to_s + " mHash/sec mining on the Marijuanacoin network."
      @result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
   end
+  
+  
+  #marijuanacoin commands
+  def mar
+    word = @params.shift
+    if word == "site"
+    	@result[:text] = "Here you go, this is the MAR website." 
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "Marijuanacoin Site",
+        	  value: "http://marijuanacoin.dabsolutions.co",
+       	     short: false
+      	   }]
+    	 }]
+    elsif word == "explorer"
+    	@result[:text] = "Here you go, this is the MAR explorer." 
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "Marijuanacoin Explorer",
+        	  value: "http://explorer.marijuanacoin.dabsolutions.co",
+       	     short: false
+      	   }]
+    	 }]
+    elsif word == "btctalk"
+    	@result[:text] = "Here you go, this is the MAR BitcoinTalk Thread." 
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "Marijuanacoin BitcoinTalk",
+        	  value: "https://",
+       	     short: false
+      	   }]
+    	 }]
+    elsif word == "cmc"
+    	@result[:text] = "Here you go, this is the MAR CoinMarketCap page." 
+    	@result[:attachments] = [{
+      		color: "good",
+     		fields: [{
+        	  title: "Marijuanacoin CoinMarketCap",
+        	  value: "https://",
+       	     short: false
+      	   }]
+    	 }]
+    else
+    	@result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` `mar cmc` for now."
+    end
+    
+  end
+  
+  
   
   
   #random commands
