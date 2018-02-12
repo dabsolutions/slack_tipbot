@@ -205,7 +205,7 @@ class Command
   
   #marijuanacoin commands
   def mar
-    word = 'site test'
+    word = 'site'
     
     if word = `site`
     @result[:text] = "Here you go, this is the MAR website."
@@ -219,7 +219,7 @@ class Command
     }]
     end
     
-    elsif word = `explorer`
+    if word = `explorer`
     @result[:text] = "Here you go, this is the MAR explorer."
     @result[:attachments] = [{
       color: "good",
@@ -232,7 +232,7 @@ class Command
     end
     
     
-    elsif word = `btctalk`
+    if word = `btctalk`
     @result[:text] = "Here you go, this is the MAR BitcoinTalk thread."
     @result[:attachments] = [{
       color: "good",
