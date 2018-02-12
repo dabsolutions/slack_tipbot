@@ -246,7 +246,7 @@ class Command
     
     
     else
-    @result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` for now."
+    	@result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` for now."
     end
     
   end
