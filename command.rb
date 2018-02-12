@@ -217,7 +217,7 @@ class Command
         short: false
       }]
     }]
-    
+    end
     
     if word = `explorer`
     @result[:text] = "Here you go, this is the MAR explorer."
@@ -229,7 +229,7 @@ class Command
         short: false
       }]
     }]
-    
+    end
     
     
     if word = `btctalk`
@@ -242,7 +242,7 @@ class Command
         short: false
       }]
     }]
-    
+    end
     
     
     else
