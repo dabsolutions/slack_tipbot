@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help disclaimer forum github site invite tipping links network marijuanacoin mar help_balance help_deposit help_tip help_withdraw help_commands help_help help_forum help_github help_site help_invite blocks connections supply hashrate stakeweight help_blocks help_connections help_stakeweight help_supply help_hashrate help_tipping help_links help_network lets_smoke study logos love_you)
+  ACTIONS = %w(balance deposit tip withdraw commands help disclaimer forum github site invite mar blocks connections supply hashrate stakeweight lets_smoke study logos love_you)
     def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -85,13 +85,9 @@ class Command
     #@result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
    #end
 
-  def help
-    @result[:text] = "Say `DabBot commands` to learn about all of my commands. `DabBot help_<command>` will give you more info on each command. See https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
-  end
   
-  def commands
-    @result[:text] = "I know commands for Tipping, Dab Solutions Links, Marijuanacoin Info and Network stats, and Help. See them all with `DabBot tipping`, `DabBot links`, `DabBot marijuanacoin`, `DabBot network`, and `DabBot help`."
-  end
+  
+  
   
   def disclaimer
     @result[:text] = "I, DabBot, as well as Dab Solutions, are not responsible for your Marijuanacoins. Do not use me as your personal MAR wallet. Just keep tipping amounts of MAR in this wallet and the majority of your coins safely in your own control."
@@ -103,20 +99,25 @@ class Command
   
   
   #command categories
-  def tipping
-    @result[:text] = "Use me to send tips by using the commands `balance`, `deposit`, `tip`, and `withdraw`."
-  end
   
-  def links
-    @result[:text] = "Use me to access Dab Solutions links with the commands `site`, `forum`, `invite`, and `github`."
-  end
   
-  def network
-    @result[:text] = "I can lookup stats on the Marijuanacoin network. Use `connections`, `blocks`, `supply`, `hashrate`, and `stakeweight`."
-  end
-  
-  def marijuanacoin
-    @result[:text] = "I have important links and information for Marijuanacoin. Use `mar site`, `mar btctalk`, `mar cmc`, and `mar explorer`."
+  def commands
+    word = @params.shift
+    if word == "tipping" 
+    	@result[:text] = "Use me to send tips by using the commands `balance`, `deposit`, `tip`, and `withdraw`."
+    elsif word == "links" 
+    	@result[:text] = "Use me to access Dab Solutions links with the commands `site`, `forum`, `invite`, and `github`."
+    elsif word == "network" 
+    	@result[:text] = "I can lookup stats on the Marijuanacoin network. Use `connections`, `blocks`, `supply`, `hashrate`, and `stakeweight`."
+    elsif word == "marijuanacoin" 
+    	@result[:text] = "I have important links and information for Marijuanacoin. Use `mar site`, `mar btctalk`, `mar cmc`, and `mar explorer`."
+    elsif word == "help" 
+    	@result[:text] = "Say `DabBot help` to get help with all of my commands."
+    elsif word == "all" 
+    	@result[:text] = "Every command that I know is: #{ACTIONS.join(', ' )}"
+    else
+    	@result[:text] = "I know commands for Tipping, Dab Solutions Links, Marijuanacoin Info and Network stats, and Help. See them all with `DabBot commands tipping`, `DabBot commands links`, `DabBot commands marijuanacoin`, `DabBot commands network`, and `DabBot help`."
+	end  
   end
   
   
@@ -321,82 +322,61 @@ class Command
   #help commands
   
   #help tipping commands
-  def help_balance
-    @result[:text] = "Say `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
+  
+  def help
+    word = @params.shift
+    if word == "help" 
+    	@result[:text] = "Wow, you really need some help..."
+    elsif word == "commands" 
+    	@result[:text] = "Saying 'DabBot commands` shows you all the commands I understand."
+    elsif word == "balance" 
+    	@result[:text] = "Say `DabBot balance` to show the total number of Marijuanacoins you have in your wallet."
+    elsif word == "tip" 
+    	@result[:text] = "Say `DabBot tip <@user> <amount>` to send someone coins. Replace `<@user>` with a name like @iguanafan and replace `<amount>` with a number like 5."
+    elsif word == "deposit" 
+    	@result[:text] = "Say `DabBot deposit` for your Marijuanacoin wallet address. You can send MAR to this address to use with me."
+    elsif word == "withdraw" 
+    	@result[:text] = "Say `DabBot withdraw address amount` to withdraw coins from this wallet to your own personal wallet. Replace `address` with a MAR address like, MSJYoyFmPYhQxXW2kY3A9DpY7AjcoD2RAu. Also replace `amount` with the amount you're withdrawing."
+    elsif word == "tipping" 
+    	@result[:text] = "Say `DabBot tipping` to see all of the Tipping commands I know."
+    elsif word == "links" 
+    	@result[:text] = "Say `DabBot links` to see all of the Links commands I know."
+    elsif word == "network" 
+    	@result[:text] = "Say `DabBot network` to see all of the Network commands I know."
+    elsif word == "marijuanacoin" 
+    	@result[:text] = "Say `DabBot marijuanacoin` to see all of the Marijuanacoin commands I know"
+    elsif word == "site" 
+    	@result[:text] = "Say `DabBot site` for the official Dab Solutions site."
+    elsif word == "invite" 
+    	@result[:text] = "Say `DabBot invite` for the official Dab Solutions slack invite page."
+    elsif word == "forum" 
+    	@result[:text] = "Say `DabBot forum` for the official Dab Solutions Forum link."
+    elsif word == "github" 
+    	@result[:text] = "Say `DabBot github` for the official Dab Solutions Github page."
+    elsif word == "blocks" 
+    	@result[:text] = "Say `DabBot blocks` for the number of blocks on the MAR blockchain."
+    elsif word == "connections" 
+    	@result[:text] = "Say `DabBot connections` for the number of connects DabBot has to the MAR network."
+    elsif word == "stakeweight" 
+    	@result[:text] = "Say `DabBot stakeweight` for the total weight of coins staking on the MAR network."
+    elsif word == "supply" 
+    	@result[:text] = "Say `DabBot supply` for the total number of Marijuanacoins in existence."
+    elsif word == "hashrate" 
+    	@result[:text] = "Say `DabBot hashrate` for the total amount of mining power currently on the MAR network."
+    elsif word == "first" 
+    	@result[:text] = "Say `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
+    elsif word == "first" 
+    	@result[:text] = "Say `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
+    elsif word == "first" 
+    	@result[:text] = "Say `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
+    elsif word == "first" 
+    	@result[:text] = "Say `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
+    else
+    @result[:text] = "Say `DabBot commands` to learn about all of my commands. `DabBot help <command>` will give you more info on each command. See https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
+    end 
+    
   end
   
-  def help_tip
-    @result[:text] = "Say `DabBot tip <@user> <amount>` to send someone coins. Replace `<@user>` with a name like @iguanafan and replace `<amount>` with a number like 5."
-  end
-
-  def help_deposit
-    @result[:text] = "Say `DabBot deposit` for your Marijuanacoin wallet address. You can send MAR to this address to use with me :)"
-  end
-  
-  def help_withdraw
-    @result[:text] = "Say `DabBot withdraw address amount` to withdraw coins from this wallet to your own personal wallet. Replace `address` with a MAR address like, MSJYoyFmPYhQxXW2kY3A9DpY7AjcoD2RAu. Also replace `amount` with the amount you're withdrawing."
-  end
-
-  #help help/commands
-  def help_help
-    @result[:text] = "Wow, you really need help..."
-  end
-  
-  def help_commands
-    @result[:text] = "Saying 'DabBot commands` shows you all the commands I understand."
-  end
-
-  #help links
-  def help_site
-    @result[:text] = "Say `DabBot site` for the official Dab Solutions site."
-  end
-  
-  def help_invite
-    @result[:text] = "Say `DabBot invite` for the official Dab Solutions slack invite page."
-  end
-
-  def help_forum
-    @result[:text] = "Say `DabBot forum` for the official Dab Solutions Forum link."
-  end
-  
-  def help_github
-    @result[:text] = "Say `DabBot github` for the official Dab Solutions Github page."
-  end
-
-  #help network 
-  def help_blocks
-    @result[:text] = "Say `DabBot blocks` for the number of blocks on the MAR blockchain."
-  end
-  
-  def help_connections
-    @result[:text] = "Say `DabBot connections` for the number of connects DabBot has to the MAR network."
-  end
-  
-  def help_stakeweight
-    @result[:text] = "Say `DabBot stakeweight` for the total weight of coins staking on the MAR network."
-  end
-  
-  def help_supply
-    @result[:text] = "Say `DabBot supply` for the total number of Marijuanacoins in existence."
-  end 
-  
-  def help_hashrate
-    @result[:text] = "Say `DabBot hashrate` for the total amount of mining power currently on the MAR network."
-  end
-
-  #help categories 
-  
-  def help_tipping
-    @result[:text] = "Say `DabBot tipping` to see all of the Tipping commands I know."
-  end
-  
-  def help_links
-    @result[:text] = "Say `DabBot links` to see all of the Links commands I know."
-  end
-
-  def help_network
-    @result[:text] = "Say `DabBot network` to see all of the Network commands I know."
-  end
   
   
   # New Commands
