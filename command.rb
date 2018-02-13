@@ -84,23 +84,17 @@ class Command
     #@result[:text] = info.to_s
     #@result[:icon_emoji] = @coin_config_module::NETWORKINFO_ICON
    #end
-
   
-  
-  
-  
-  def disclaimer
-    @result[:text] = "I, DabBot, as well as Dab Solutions, are not responsible for your Marijuanacoins. Do not use me as your personal MAR wallet. Just keep tipping amounts of MAR in this wallet and the majority of your coins safely in your own control."
-  end
   
   # New Commands
   # by xrobesx
   # the bot will be for more than just tipping
   
+  def disclaimer
+    @result[:text] = "I, DabBot, as well as Dab Solutions, are not responsible for your Marijuanacoins. Do not use me as your personal MAR wallet. Just keep tipping amounts of MAR in this wallet and the majority of your coins safely in your own control."
+  end
   
-  #command categories
-  
-  
+  #commands
   def commands
     word = @params.shift
     if word == "tipping" 
@@ -119,7 +113,6 @@ class Command
     	@result[:text] = "I know commands for Tipping, Dab Solutions Links, Marijuanacoin Info and Network stats, and Help. See them all with `DabBot commands tipping`, `DabBot commands links`, `DabBot commands marijuanacoin`, `DabBot commands network`, and `DabBot help`."
 	end  
   end
-  
   
   #links commands
   def site
@@ -165,7 +158,6 @@ class Command
       	}]
    	 }]
     end
-    
   end
   
   def forum
@@ -284,10 +276,7 @@ class Command
     else
     	@result[:text] = "I know `mar site`, `mar explorer`, and `mar btctalk` `mar cmc` for now."
     end
-    
   end
-  
-  
   
   
   #random commands
@@ -317,16 +306,13 @@ class Command
   end
   
 
-
-
   #help commands
-  
-  #help tipping commands
-  
   def help
     word = @params.shift
     if word == "help" 
     	@result[:text] = "Wow, you really need some help..."
+    elsif word == "me" 
+    	@result[:text] = "I'll do anything I can!"
     elsif word == "commands" 
     	@result[:text] = "Saying 'DabBot commands` shows you all the commands I understand."
     elsif word == "balance" 
@@ -338,13 +324,13 @@ class Command
     elsif word == "withdraw" 
     	@result[:text] = "Say `DabBot withdraw address amount` to withdraw coins from this wallet to your own personal wallet. Replace `address` with a MAR address like, MSJYoyFmPYhQxXW2kY3A9DpY7AjcoD2RAu. Also replace `amount` with the amount you're withdrawing."
     elsif word == "tipping" 
-    	@result[:text] = "Say `DabBot tipping` to see all of the Tipping commands I know."
+    	@result[:text] = "Say `DabBot commands tipping` to see all of the Tipping commands I know."
     elsif word == "links" 
-    	@result[:text] = "Say `DabBot links` to see all of the Links commands I know."
+    	@result[:text] = "Say `DabBot commands links` to see all of the Links commands I know."
     elsif word == "network" 
-    	@result[:text] = "Say `DabBot network` to see all of the Network commands I know."
+    	@result[:text] = "Say `DabBot commands network` to see all of the Network commands I know."
     elsif word == "marijuanacoin" 
-    	@result[:text] = "Say `DabBot marijuanacoin` to see all of the Marijuanacoin commands I know"
+    	@result[:text] = "Say `DabBot commands marijuanacoin` to see all of the Marijuanacoin commands I know"
     elsif word == "site" 
     	@result[:text] = "Say `DabBot site` for the official Dab Solutions site."
     elsif word == "invite" 
@@ -363,28 +349,16 @@ class Command
     	@result[:text] = "Say `DabBot supply` for the total number of Marijuanacoins in existence."
     elsif word == "hashrate" 
     	@result[:text] = "Say `DabBot hashrate` for the total amount of mining power currently on the MAR network."
-    elsif word == "first" 
-    	@result[:text] = "Say `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
-    elsif word == "first" 
-    	@result[:text] = "Say `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
-    elsif word == "first" 
-    	@result[:text] = "Say `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
-    elsif word == "first" 
-    	@result[:text] = "Say `DabBot balance` will show you the total number of Marijuanacoins you have in your wallet."
     else
-    @result[:text] = "Say `DabBot commands` to learn about all of my commands. `DabBot help <command>` will give you more info on each command. See https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
+    	@result[:text] = "Say `DabBot commands` to learn about all of my commands. `DabBot help <command>` will give you more info on each command. See https://forum.dabsolutions.co/topic/2/the-dabslack-tipbot for more info."
     end 
-    
   end
-  
-  
   
   # New Commands
   # by xrobesx
   # the bot will be for more than just tipping
   
   
-
   private
 
   def set_amount
