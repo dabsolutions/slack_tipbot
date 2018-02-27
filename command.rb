@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw commands help disclaimer forum github site invite mar blocks connections supply hashrate stakeweight lets_smoke study logos love_you)
+  ACTIONS = %w(balance deposit tip withdraw commands help disclaimer forum github site invite mar blocks connections supply hashrate stakeweight lets_smoke study logos love)
     def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -300,9 +300,21 @@ class Command
     }]
   end
   
-  def love_you
-    @result[:text] = "I love you too! I love you all."
-    @result[:icon_emoji] = @coin_config_module::LOVE_EMOJI
+  def love
+    word = @params.shift
+    if word == "you" 
+    	@result[:text] = "I love you too <@#{@user_name}>"
+	@result[:icon_emoji] = @coin_config_module::LOVE_EMOJI
+    elsif word == "me" 
+    	@result[:text] = "Maybe if you loved me..."
+	@result[:icon_emoji] = @coin_config_module::LOVE_EMOJI
+    elsif word == "us" 
+    	@result[:text] = "Of course! I love everyone in the DabSlack."
+	@result[:icon_emoji] = @coin_config_module::LOVE_EMOJI
+    else
+    	@result[:text] = "Tell me more."
+	@result[:icon_emoji] = @coin_config_module::LOVE_EMOJI
+    end 
   end
   
 
